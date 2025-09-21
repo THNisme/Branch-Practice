@@ -4,15 +4,28 @@ const BMI = () => {
     const [weight, setWeight] = useState(0);
     const [height, setHeight] = useState(0);
     const [result, setResult] = useState(0);
+    const [status, setStatus] = useState("");
 
     const changeWeight = (e) => setWeight(e.target.value);
     const changeHeight = (e) => setHeight(e.target.value);
 
+    
+    const defineStatus = (indexBMI) => {
+        if (indexBMI < 18.5) {
+            return "Ốm nhom";
+        } else if (18.5 <= indexBMI && indexBMI <= 23.99) {
+            return "Bình thường";
+        } else  {
+           return "Bé O";
+        }
+    }
+    
     const bmiCalculate = () => {
         const h = parseFloat(height) / 100; // cm -> m
         const w = parseFloat(weight);
         const result = (w / (h * h)).toFixed(2);
         setResult(result);
+        setStatus(defineStatus(result));
     };
 
     return (
@@ -37,7 +50,7 @@ const BMI = () => {
 
             <button onClick={bmiCalculate}>Change Message</button>
 
-            <h3>BMI = {result}</h3>
+            <h3>BMI = {result} {status}</h3>
         </div>
     );
 

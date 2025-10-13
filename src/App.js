@@ -11,7 +11,7 @@ const productData = [
 ];
 
 // Reducer quản lý giỏ hàng
-function cartReducer(state, action) {
+const cartReducer = (state, action) => {
   if (action.type === "ADD_ITEM") {
     const product = action.payload;
     const existingItem = state.items.find(item => item.id === product.id);
@@ -76,9 +76,9 @@ function cartReducer(state, action) {
   }
 
   return state;
-}
+};
 
-export default function App() {
+const App = () => {
   const [state, dispatch] = useReducer(cartReducer, { items: [], error: "" });
 
   const addToCart = (product) => dispatch({ type: "ADD_ITEM", payload: product });
@@ -112,4 +112,6 @@ export default function App() {
       </div>
     </div>
   );
-}
+};
+
+export default App;

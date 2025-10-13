@@ -2,7 +2,7 @@ import React from "react";
 import CartItem from "./CartItem";
 import { Button, Alert } from "react-bootstrap";
 
-export default function Cart({ cart, error, onIncrease, onDecrease, onRemove, onClear, totalPrice, totalItems }) {
+const Cart = ({ cart, error, onIncrease, onDecrease, onRemove, onClear, totalPrice, totalItems }) => {
   return (
     <div className="card shadow-sm">
       <div className="card-body">
@@ -50,4 +50,6 @@ export default function Cart({ cart, error, onIncrease, onDecrease, onRemove, on
       </div>
     </div>
   );
-}
+};
+
+export default Cart;

@@ -20,6 +20,7 @@ export default defineConfig([
       "no-unused-vars": "warn",       // Cảnh báo biến không dùng
       "no-console": "off",            // Cho phép dùng console
       "react/react-in-jsx-scope": "off",
+      "react/prop-types": "off",
     },
   },
 ]);

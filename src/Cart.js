@@ -2,13 +2,16 @@ import React from "react";
 import CartItem from "./CartItem";
 import { Button, Alert } from "react-bootstrap";
 
-const Cart = ({ cart, error, onIncrease, onDecrease, onRemove, onClear, totalPrice, totalItems }) => {
+const Cart = ({ cart, error, onIncrease, onDecrease, onRemove, onClear, totalPrice, totalItems, afterTotalPrice }) => {
   return (
     <div className="card shadow-sm">
       <div className="card-body">
         <h5 className="card-title">Cart</h5>
-        <h6 className="text-end mb-3">
+        <h6 className="text-end mb-3 text-secondary">
           Cart Total: ${totalPrice.toFixed(2)} ({totalItems} items)
+        </h6>
+        <h6 className="text-end mb-3">
+          After Discount: ${afterTotalPrice.toFixed(2)} ({totalItems} items)
         </h6>
 
         {error && (
@@ -33,6 +36,7 @@ const Cart = ({ cart, error, onIncrease, onDecrease, onRemove, onClear, totalPri
               onIncrease={() => onIncrease(item.id)}
               onDecrease={() => onDecrease(item.id)}
               onRemove={() => onRemove(item.id)}
+              discountRate={item.discountRate}
             />
           ))}
         </div>
@@ -43,7 +47,7 @@ const Cart = ({ cart, error, onIncrease, onDecrease, onRemove, onClear, totalPri
               Clear Cart
             </Button>
             <Button variant="success">
-              Checkout (${totalPrice.toFixed(2)})
+              Checkout (${afterTotalPrice.toFixed(2)})
             </Button>
           </div>
         )}

@@ -4,10 +4,10 @@ import ProductList from "./ProductList";
 import Cart from "./Cart";
 
 const productData = [
-  { id: "p1", name: "Wireless Headphones", price: 59.99, stock: 5, description: "Comfortable wireless headphones with long battery life." },
-  { id: "p2", name: "Mechanical Keyboard", price: 89.0, stock: 3, description: "Tactile mechanical keyboard with RGB." },
-  { id: "p3", name: "USB-C Charger", price: 19.5, stock: 10, description: "Fast charging 65W USB-C charger." },
-  { id: "p4", name: "Gaming Mouse", price: 39.99, stock: 2, description: "High-precision optical sensor gaming mouse." }
+  { id: "p1", name: "Wireless Headphones", price: 59.99, stock: 5, description: "Comfortable wireless headphones with long battery life.", discountRate: 0.2 },
+  { id: "p2", name: "Mechanical Keyboard", price: 89.0, stock: 3, description: "Tactile mechanical keyboard with RGB.", discountRate: 0.5 },
+  { id: "p3", name: "USB-C Charger", price: 19.5, stock: 10, description: "Fast charging 65W USB-C charger.", discountRate: 0.3 },
+  { id: "p4", name: "Gaming Mouse", price: 39.99, stock: 2, description: "High-precision optical sensor gaming mouse.", discountRate: 0.4 }
 ];
 
 // Reducer quản lý giỏ hàng
@@ -88,7 +88,11 @@ const App = () => {
   const clearCart = () => dispatch({ type: "CLEAR_CART" });
 
   const totalPrice = state.items.reduce((sum, i) => sum + i.price * i.quantity, 0);
+  const discountTotalPrice = state.items.reduce((sum, i) => sum + i.price * i.quantity * i.discountRate, 0);
+  const afterTotalPrice = totalPrice - discountTotalPrice;
+
   const totalItems = state.items.reduce((sum, i) => sum + i.quantity, 0);
+
   return (
     <div className="container mt-4">
       <h2 className="mb-4">React Shopping Cart with Hooks</h2>
@@ -107,6 +111,7 @@ const App = () => {
             onClear={clearCart}
             totalPrice={totalPrice}
             totalItems={totalItems}
+            afterTotalPrice={afterTotalPrice}
           />
         </div>
       </div>

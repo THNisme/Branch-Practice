@@ -3,9 +3,15 @@ import { Link } from 'react-router-dom';
 
 function NavbarMenu() {
   return (
-    <Navbar bg="primary" variant='dark' expand="lg">
+    <Navbar bg="dark" variant='dark' expand="lg" className='fixed-top'>
       <Container>
-        <Navbar.Brand as={Link} to="/">Book Store</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
+          <img
+            src="/images/logo.png"
+            alt="Book Store Logo"
+            className="me-2"
+          />
+        </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse>
           <Nav>

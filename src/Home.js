@@ -1,18 +1,31 @@
+import { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 
 function Home() {
+  const [homeData, setHomeData] = useState(null);
+
+  useEffect(() => {
+    fetch('http://localhost:5000/home')
+      .then((res) => res.json())
+      .then((data) => setHomeData(data))
+      .catch((error) => console.error('Error fetching home data:', error));
+  }, []);
+
+  if (!homeData) {
+    return (
+      <Container className="my-5">
+        <p>Loading...</p>
+      </Container>
+    );
+  }
+
   return (
     <Container className="my-5">
-      <h1>Welcome to the Book Store</h1>
-      <p className='fw-light fs-5'>
-        Discover a world of stories and knowledge. Whether you&apos;re looking for the latest bestsellers
-        or timeless classics, we have something for everyone.
-      </p>
-      <p>
-        Our collection spans various genres including fiction, non-fiction, mystery, romance,
-        and science fiction. Dive into your next adventure today!
-      </p>
+      <h1>{homeData.title}</h1>
+      {/* content là HTML nên phải render bằng dangerouslySetInnerHTML */}
+      <div dangerouslySetInnerHTML={{ __html: homeData.content }} />
     </Container>
   );
 }
+
 export default Home;

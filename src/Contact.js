@@ -14,19 +14,31 @@ function Contact() {
     return newErrors;
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length) {
       setErrors(validationErrors);
       setSubmitted(false);
     } else {
-      setErrors({});
-      setSubmitted(true);
+      // Gửi POST đến server
+      fetch('http://localhost:5000/contacts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+        .then((res) => {
+          if (!res.ok) throw new Error('Failed to submit');
+          return res.json();
+        })
+        .then(() => {
+          setSubmitted(true);
+          setErrors({});
+        })
+        .catch(() => alert('Failed to submit. Try again later.'));
     }
   };
 
-  // 👉 Hàm reset form
   const handleReset = () => {
     setForm({ name: '', email: '', message: '' });
     setErrors({});
@@ -42,7 +54,7 @@ function Contact() {
           <Form.Label>Name</Form.Label>
           <Form.Control
             value={form.name}
-            onChange={e => setForm({ ...form, name: e.target.value })}
+            onChange={(e) => setForm({ ...form, name: e.target.value })}
             isInvalid={!!errors.name}
           />
           <Form.Control.Feedback type="invalid">{errors.name}</Form.Control.Feedback>
@@ -52,7 +64,7 @@ function Contact() {
           <Form.Label>Email</Form.Label>
           <Form.Control
             value={form.email}
-            onChange={e => setForm({ ...form, email: e.target.value })}
+            onChange={(e) => setForm({ ...form, email: e.target.value })}
             isInvalid={!!errors.email}
           />
           <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
@@ -64,7 +76,7 @@ function Contact() {
             as="textarea"
             rows={3}
             value={form.message}
-            onChange={e => setForm({ ...form, message: e.target.value })}
+            onChange={(e) => setForm({ ...form, message: e.target.value })}
             isInvalid={!!errors.message}
           />
           <Form.Control.Feedback type="invalid">{errors.message}</Form.Control.Feedback>

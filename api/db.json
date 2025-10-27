@@ -89,5 +89,12 @@
       "image": "images/book-12.jpg"
     }
   ],
-  "contacts": []
+  "contacts": [
+    {
+      "id": "1bae",
+      "name": "Lâm Nguyễn Thúy Vy (hi.tzy)",
+      "email": "matvuembe@gmail.com",
+      "message": "hẹ hẹ hẹ"
+    }
+  ]
 }

@@ -46,7 +46,7 @@ function Contact() {
   };
 
   return (
-    <Container className="my-5">
+    <Container style={{ marginTop: "100px" }}>
       <h2>Contact Us</h2>
       {submitted && <Alert variant="success">Message sent successfully!</Alert>}
       <Form onSubmit={handleSubmit}>

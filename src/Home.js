@@ -13,16 +13,15 @@ function Home() {
 
   if (!homeData) {
     return (
-      <Container className="my-5">
+      <Container style={{ marginTop: "150px" }} >
         <p>Loading...</p>
       </Container>
     );
   }
 
   return (
-    <Container className="my-5">
+    <Container style={{ marginTop: "100px" }}>
       <h1>{homeData.title}</h1>
-      {/* content là HTML nên phải render bằng dangerouslySetInnerHTML */}
       <div dangerouslySetInnerHTML={{ __html: homeData.content }} />
     </Container>
   );

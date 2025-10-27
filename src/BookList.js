@@ -14,14 +14,14 @@ function BookList() {
 
   if (books.length === 0) {
     return (
-      <Container className="my-5">
+      <Container style={{ marginTop: "100px" }}>
         <p>Loading books...</p>
       </Container>
     );
   }
 
   return (
-    <Container className="my-5">
+    <Container style={{ marginTop: "100px" }}>
       <Row>
         {books.map((book) => (
           <Col key={book.id} md={4} className="mb-4">

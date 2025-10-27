@@ -3,7 +3,6 @@ import { Suspense, lazy } from 'react';
 import NavbarMenu from './NavbarMenu';
 import Footer from './Footer';
 
-// ✅ Lazy load các component pages
 const Home = lazy(() => import('./Home'));
 const BookList = lazy(() => import('./BookList'));
 const BookDetail = lazy(() => import('./BookDetail'));
@@ -13,7 +12,6 @@ function App() {
   return (
     <Router>
       <NavbarMenu />
-      {/* ✅ Bọc tất cả route trong Suspense */}
       <Suspense fallback={<div className="text-center my-5">Loading...</div>}>
         <Routes>
           <Route path="/" element={<Home />} />

@@ -16,8 +16,6 @@ function NavbarMenu() {
         <Navbar.Collapse>
           <Nav>
             <Nav.Link as={Link} to="/">Home</Nav.Link>
-            <Nav.Link as={Link} to="/books">Books</Nav.Link>
-            <Nav.Link as={Link} to="/contact">Contact</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
